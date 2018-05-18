@@ -4,104 +4,124 @@
  * and imports for stencil collections that might be configured in your stencil.config.js file
  */
 
-import {
-  MatchResults,
-} from '@stencil/router';
+import '@stencil/core';
 
 declare global {
+  namespace JSX {
+    interface Element {}
+    export interface IntrinsicElements {}
+  }
+  namespace JSXElements {}
+
   interface HTMLStencilElement extends HTMLElement {
     componentOnReady(): Promise<this>;
     componentOnReady(done: (ele?: this) => void): void;
+
+    forceUpdate(): void;
   }
+
+  interface HTMLAttributes {}
 }
 
-
-
 import {
-  AppHome as AppHome
-} from './components/app-home/app-home';
+  Todo,
+} from './components/todo-list/todo-list';
 
 declare global {
-  interface HTMLAppHomeElement extends AppHome, HTMLStencilElement {
+
+  namespace StencilComponents {
+    interface TodoSite {
+
+    }
   }
-  var HTMLAppHomeElement: {
-    prototype: HTMLAppHomeElement;
-    new (): HTMLAppHomeElement;
+
+  interface HTMLTodoSiteElement extends StencilComponents.TodoSite, HTMLStencilElement {}
+
+  var HTMLTodoSiteElement: {
+    prototype: HTMLTodoSiteElement;
+    new (): HTMLTodoSiteElement;
   };
   interface HTMLElementTagNameMap {
-    "app-home": HTMLAppHomeElement;
+    'todo-site': HTMLTodoSiteElement;
   }
   interface ElementTagNameMap {
-    "app-home": HTMLAppHomeElement;
+    'todo-site': HTMLTodoSiteElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "app-home": JSXElements.AppHomeAttributes;
+      'todo-site': JSXElements.TodoSiteAttributes;
     }
   }
   namespace JSXElements {
-    export interface AppHomeAttributes extends HTMLAttributes {
-      
-    }
-  }
-}
+    export interface TodoSiteAttributes extends HTMLAttributes {
 
-
-import {
-  AppProfile as AppProfile
-} from './components/app-profile/app-profile';
-
-declare global {
-  interface HTMLAppProfileElement extends AppProfile, HTMLStencilElement {
-  }
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
-  };
-  interface HTMLElementTagNameMap {
-    "app-profile": HTMLAppProfileElement;
-  }
-  interface ElementTagNameMap {
-    "app-profile": HTMLAppProfileElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      "app-profile": JSXElements.AppProfileAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AppProfileAttributes extends HTMLAttributes {
-      match?: MatchResults;
     }
   }
 }
 
 
-import {
-  MyApp as MyApp
-} from './components/my-app/my-app';
-
 declare global {
-  interface HTMLMyAppElement extends MyApp, HTMLStencilElement {
+
+  namespace StencilComponents {
+    interface TodoForm {
+
+    }
   }
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
+
+  interface HTMLTodoFormElement extends StencilComponents.TodoForm, HTMLStencilElement {}
+
+  var HTMLTodoFormElement: {
+    prototype: HTMLTodoFormElement;
+    new (): HTMLTodoFormElement;
   };
   interface HTMLElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    'todo-form': HTMLTodoFormElement;
   }
   interface ElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    'todo-form': HTMLTodoFormElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "my-app": JSXElements.MyAppAttributes;
+      'todo-form': JSXElements.TodoFormAttributes;
     }
   }
   namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
-      
+    export interface TodoFormAttributes extends HTMLAttributes {
+      'onNewTodo'?: (event: CustomEvent) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface TodoList {
+      'todos': Todo[];
+    }
+  }
+
+  interface HTMLTodoListElement extends StencilComponents.TodoList, HTMLStencilElement {}
+
+  var HTMLTodoListElement: {
+    prototype: HTMLTodoListElement;
+    new (): HTMLTodoListElement;
+  };
+  interface HTMLElementTagNameMap {
+    'todo-list': HTMLTodoListElement;
+  }
+  interface ElementTagNameMap {
+    'todo-list': HTMLTodoListElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'todo-list': JSXElements.TodoListAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface TodoListAttributes extends HTMLAttributes {
+      'onToggleTodo'?: (event: CustomEvent) => void;
+      'todos'?: Todo[];
     }
   }
 }

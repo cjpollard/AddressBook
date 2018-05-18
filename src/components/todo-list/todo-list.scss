@@ -1,0 +1,22 @@
+.todo-list {
+  margin-top: 20px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 12px;
+    li {
+      border-bottom: 1px solid #e1e1e1;
+      padding: 5px 0;
+      &.completed {
+        text-decoration: line-through;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
