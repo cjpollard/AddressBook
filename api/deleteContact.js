@@ -1,5 +1,5 @@
 module.exports = (req, res) => {
 
-    res.send(200, "Deleted");
+    res.status(200).send("Deleted");
 
 };
