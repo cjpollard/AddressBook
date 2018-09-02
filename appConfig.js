@@ -5,7 +5,7 @@ const dbSettings = (process.env.NODE_ENV == "production") ? {
     "database": process.env.DB_DEFAULT
 } : {
     "host": "localhost",
-    "user": "root",
+    "user": "cpab_user",
     "password": "bangarang",
     "database": "cp_address_book"
 };

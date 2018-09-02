@@ -1,13 +1,10 @@
 const mysql = require("mysql");
+const config = require("../appConfig").database;
 
-const pool = mysql.createPool({
-    host: "localhost",
-    user: "cpab_user",
-    password: "bangarang",
-    database: "cp_address_book",
-    connectionLimit: 10,
-    multipleStatements: true
-});
+config.connectionLimit = 5;
+config.multipleStatements = true;
+
+const pool = mysql.createPool(config);
 
 
 const query = (sql, values) => {
