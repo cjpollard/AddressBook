@@ -1,8 +1,9 @@
-.todo-form {
+.contact-form {
   background: #fff;
   padding: 20px;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
 
   .form-control {
     border-radius: 0;
@@ -11,7 +12,7 @@
   button {
     border: none;
     padding: 7px 10px;
-    background: #ff47d7;
+    background: #02be4a;
     color: #fff;
     outline: none;
     border-radius: 0;

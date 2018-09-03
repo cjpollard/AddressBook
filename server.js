@@ -11,6 +11,11 @@ const { wwwDir, logger } = stencil.initApp({
   configPath: __dirname
 });
 
+// api routes
+app.use('/api/add', require("./api/addContact"));
+app.use('/api/edit', require("./api/editContact"));
+app.use('/api/delete', require("./api/deleteContact"));
+
 // serve static files
 app.use(express.static(wwwDir));
 

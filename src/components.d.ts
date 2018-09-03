@@ -27,37 +27,37 @@ declare global {
 }
 
 import {
-  Todo,
-} from './components/todo-list/todo-list';
+  Contact,
+} from './contact';
 
 declare global {
 
   namespace StencilComponents {
-    interface TodoSite {
+    interface ContactForm {
 
     }
   }
 
-  interface HTMLTodoSiteElement extends StencilComponents.TodoSite, HTMLStencilElement {}
+  interface HTMLContactFormElement extends StencilComponents.ContactForm, HTMLStencilElement {}
 
-  var HTMLTodoSiteElement: {
-    prototype: HTMLTodoSiteElement;
-    new (): HTMLTodoSiteElement;
+  var HTMLContactFormElement: {
+    prototype: HTMLContactFormElement;
+    new (): HTMLContactFormElement;
   };
   interface HTMLElementTagNameMap {
-    'todo-site': HTMLTodoSiteElement;
+    'contact-form': HTMLContactFormElement;
   }
   interface ElementTagNameMap {
-    'todo-site': HTMLTodoSiteElement;
+    'contact-form': HTMLContactFormElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'todo-site': JSXElements.TodoSiteAttributes;
+      'contact-form': JSXElements.ContactFormAttributes;
     }
   }
   namespace JSXElements {
-    export interface TodoSiteAttributes extends HTMLAttributes {
-
+    export interface ContactFormAttributes extends HTMLAttributes {
+      'onNewContact'?: (event: CustomEvent) => void;
     }
   }
 }
@@ -66,31 +66,32 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface TodoForm {
-
+    interface ContactList {
+      'contacts': Contact[];
     }
   }
 
-  interface HTMLTodoFormElement extends StencilComponents.TodoForm, HTMLStencilElement {}
+  interface HTMLContactListElement extends StencilComponents.ContactList, HTMLStencilElement {}
 
-  var HTMLTodoFormElement: {
-    prototype: HTMLTodoFormElement;
-    new (): HTMLTodoFormElement;
+  var HTMLContactListElement: {
+    prototype: HTMLContactListElement;
+    new (): HTMLContactListElement;
   };
   interface HTMLElementTagNameMap {
-    'todo-form': HTMLTodoFormElement;
+    'contact-list': HTMLContactListElement;
   }
   interface ElementTagNameMap {
-    'todo-form': HTMLTodoFormElement;
+    'contact-list': HTMLContactListElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'todo-form': JSXElements.TodoFormAttributes;
+      'contact-list': JSXElements.ContactListAttributes;
     }
   }
   namespace JSXElements {
-    export interface TodoFormAttributes extends HTMLAttributes {
-      'onNewTodo'?: (event: CustomEvent) => void;
+    export interface ContactListAttributes extends HTMLAttributes {
+      'contacts'?: Contact[];
+      'onToggleContact'?: (event: CustomEvent) => void;
     }
   }
 }
@@ -99,32 +100,31 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface TodoList {
-      'todos': Todo[];
+    interface AddressBook {
+
     }
   }
 
-  interface HTMLTodoListElement extends StencilComponents.TodoList, HTMLStencilElement {}
+  interface HTMLAddressBookElement extends StencilComponents.AddressBook, HTMLStencilElement {}
 
-  var HTMLTodoListElement: {
-    prototype: HTMLTodoListElement;
-    new (): HTMLTodoListElement;
+  var HTMLAddressBookElement: {
+    prototype: HTMLAddressBookElement;
+    new (): HTMLAddressBookElement;
   };
   interface HTMLElementTagNameMap {
-    'todo-list': HTMLTodoListElement;
+    'address-book': HTMLAddressBookElement;
   }
   interface ElementTagNameMap {
-    'todo-list': HTMLTodoListElement;
+    'address-book': HTMLAddressBookElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'todo-list': JSXElements.TodoListAttributes;
+      'address-book': JSXElements.AddressBookAttributes;
     }
   }
   namespace JSXElements {
-    export interface TodoListAttributes extends HTMLAttributes {
-      'onToggleTodo'?: (event: CustomEvent) => void;
-      'todos'?: Todo[];
+    export interface AddressBookAttributes extends HTMLAttributes {
+
     }
   }
 }
