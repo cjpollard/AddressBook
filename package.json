@@ -2,6 +2,7 @@
   "name": "@stencil/starter",
   "private": true,
   "version": "0.0.1",
+  "main": "server.js",
   "description": "Stencil App Starter",
   "files": [
     "dist/"
@@ -9,23 +10,26 @@
   "scripts": {
     "build": "stencil build --prerender",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+    "ssr": "node server.js",
     "serve": "stencil-dev-server",
     "start": "npm run dev",
+    "start.ssr": "npm run build && npm run ssr",
     "test": "jest --no-cache",
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@stencil/core": "^0.9.0",
+    "@stencil/core": "^0.9.7",
     "@stencil/router": "latest",
     "@stencil/sass": "0.0.5",
     "bootstrap": "^4.1.1",
-    "nightwatch": "^0.9.21"
+    "express": "^4.16.3",
+    "nightwatch": "^1.0.6"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
     "@stencil/utils": "latest",
-    "@types/jest": "^21.1.1",
-    "jest": "^21.2.1"
+    "@types/jest": "^23.0.0",
+    "jest": "^23.1.0"
   },
   "repository": {
     "type": "git",
