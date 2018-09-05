@@ -22,7 +22,9 @@ export class ContactForm {
 
 
   handleChange = (e) => {
+    console.log(e.target.name, e.target.value);
     this[e.target.name] = e.target.value;
+    console.log(this.firstname);
   }
 
   handleNewContact = () => {
@@ -61,18 +63,18 @@ export class ContactForm {
       <div class="contact-form">
         <p>Add new contact</p>
         <br/>
-        <input type="text" class="form-control" placeholder="First name" value={this.firstname} onChange={this.handleChange} />
-        <input type="text" class="form-control" placeholder="Surname" value={this.surname} onChange={this.handleChange} />
-        <input type="email" class="form-control" placeholder="Email" value={this.email} onChange={this.handleChange} />
-        <input type="tel" class="form-control" placeholder="Mobile no." value={this.mobile} onChange={this.handleChange} />
-        <input type="tel" class="form-control" placeholder="Phone no." value={this.phone} onChange={this.handleChange} />
-        <input type="text" class="form-control" placeholder="House name/no." value={this.address1} onChange={this.handleChange} />
-        <input type="text" class="form-control" placeholder="Street" value={this.address2} onChange={this.handleChange} />
-        <input type="text" class="form-control" placeholder="Town/City" value={this.town} onChange={this.handleChange} />
-        <input type="text" class="form-control" placeholder="County" value={this.county} onChange={this.handleChange} />
-        <input type="text" class="form-control" placeholder="Country" value={this.country} onChange={this.handleChange} />
-        <input type="text" class="form-control" placeholder="Postcode" value={this.postcode} onChange={this.handleChange} />
-        <input type="date" class="form-control" placeholder="Date of birth" value={this.dob} onChange={this.handleChange} />
+        <input type="text" class="form-control" name="firstname" required placeholder="First name" value={this.firstname} onChange={(e) => this.handleChange(e)} />
+        <input type="text" class="form-control" name="surname" required placeholder="Surname" value={this.surname} onChange={(e) => this.handleChange(e)} />
+        <input type="email" class="form-control" name="email" required placeholder="Email" value={this.email} onChange={(e) => this.handleChange(e)} />
+        <input type="tel" class="form-control" name="mobile" placeholder="Mobile no." value={this.mobile} onChange={(e) => this.handleChange(e)} />
+        <input type="tel" class="form-control" name="phone" placeholder="Phone no." value={this.phone} onChange={(e) => this.handleChange(e)} />
+        <input type="text" class="form-control" name="address1" placeholder="House name/no." value={this.address1} onChange={(e) => this.handleChange(e)} />
+        <input type="text" class="form-control" name="address2" placeholder="Street" value={this.address2} onChange={(e) => this.handleChange(e)} />
+        <input type="text" class="form-control" name="town" placeholder="Town/City" value={this.town} onChange={(e) => this.handleChange(e)} />
+        <input type="text" class="form-control" name="county" placeholder="County" value={this.county} onChange={(e) => this.handleChange(e)} />
+        <input type="text" class="form-control" name="country" placeholder="Country" value={this.country} onChange={(e) => this.handleChange(e)} />
+        <input type="text" class="form-control" name="postcode" placeholder="Postcode" value={this.postcode} onChange={(e) => this.handleChange(e)} />
+        <input type="date" class="form-control" name="dob" placeholder="Date of birth" value={this.dob} onChange={(e) => this.handleChange(e)} />
         <button onClick={this.handleNewContact}>Add</button>
       </div>
     );

@@ -91,6 +91,7 @@ declare global {
   namespace JSXElements {
     export interface ContactListAttributes extends HTMLAttributes {
       'contacts'?: Contact[];
+      'onDeleteContact'?: (event: CustomEvent) => void;
       'onToggleContact'?: (event: CustomEvent) => void;
     }
   }

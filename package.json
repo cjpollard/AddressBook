@@ -23,9 +23,12 @@
     "@stencil/sass": "0.0.5",
     "ajv": "^6.5.3",
     "atob": "^2.1.2",
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "btoa": "^1.2.1",
     "express": "^4.16.3",
+    "http": "0.0.0",
+    "ionicons": "^4.4.3",
     "mysql": "^2.16.0",
     "nightwatch": "^1.0.6"
   },

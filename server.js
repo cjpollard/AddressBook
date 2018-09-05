@@ -3,6 +3,8 @@ const stencil = require('@stencil/core/server');
 
 // create the express app
 const app = express();
+const server = require("http").createServer(app);
+
 
 // load the stencil config and
 // express serve-side rendering middleware
@@ -11,10 +13,11 @@ const { wwwDir, logger } = stencil.initApp({
   configPath: __dirname
 });
 
+app.use('/*', (req, res, next) => {
+  next();
+});
 // api routes
-app.use('/api/add', require("./api/addContact"));
-app.use('/api/edit', require("./api/editContact"));
-app.use('/api/delete', require("./api/deleteContact"));
+app.use('/api', require('./api/controller'));
 
 // serve static files
 app.use(express.static(wwwDir));
@@ -23,4 +26,4 @@ app.use(express.static(wwwDir));
 const port = 3030;
 
 // start listening and handling requests
-app.listen(port, () => logger.info(`server-side rendering listening on port: ${ port }`));
+server.listen(port, () => logger.info(`server-side rendering listening on port: ${ port }`));

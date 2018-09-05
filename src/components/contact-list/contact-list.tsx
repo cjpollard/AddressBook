@@ -9,6 +9,11 @@ export class ContactList {
 
     @Prop() contacts: Contact[];
     @Event() toggleContact: EventEmitter;
+    @Event() deleteContact: EventEmitter;
+
+    handleDelete = (contact) => {
+        this.deleteContact.emit(contact);
+    }
 
     handleToggleContact = (contact) => {
         this.toggleContact.emit(contact);
@@ -18,8 +23,12 @@ export class ContactList {
         return (
             <div class="contact-list">
                 <ul>
-                    {this.contacts.map(contact => <li
-                        onClick={this.handleToggleContact.bind(this, contact)}>{contact.firstname + " " + contact.surname}</li>)}
+                    {this.contacts.map(contact => 
+                        <li>
+                            <span onClick={this.handleToggleContact.bind(this, contact)}>{contact.firstname + " " + contact.surname}</span>
+                            <ion-icon name='trash' onClick={this.handleDelete.bind(this, contact)}></ion-icon>
+                        </li>
+                    )}
                 </ul>
             </div>
         );

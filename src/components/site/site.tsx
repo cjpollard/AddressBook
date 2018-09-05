@@ -1,5 +1,6 @@
 import { Component, Listen, State } from '@stencil/core';
 import { Contact } from '../../contact';
+import { apiInterface } from '../../utils';
 
 @Component({
     tag: 'address-book',
@@ -14,10 +15,22 @@ export class Site {
         mobile: '07712345678',
     }];
 
+    @Listen('deleteContact')
+    deleteContact(e) {
+        const id = e.detail.id;
+        apiInterface.post('/api/delete', id).then(() => {
+            apiInterface.get('/api/get').then((data) => {
+                this.contacts = data.contacts;
+            });
+        })
+    }
+
     @Listen('newContact')
     newContact(e) {
         const newContact = e.detail;
-        this.contacts = [...this.contacts, newContact];
+        apiInterface.post('/api/add', e.detail).then(() => {
+            this.contacts = [...this.contacts, newContact];
+        });
     }
 
     render() {
