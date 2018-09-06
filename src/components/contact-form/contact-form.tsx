@@ -29,6 +29,7 @@ export class ContactForm {
 
 
   componentDidUpdate() {
+    // If we're editing a contact, fill in the values
     if(this.contact && this.contact.email !== this.email) {
       this.editing = true;
       this.id = this.contact.id;
@@ -51,6 +52,7 @@ export class ContactForm {
     this[e.target.name] = e.target.value;
   }
 
+  // Emits to updateContact event handler in site.tsx
   handleEditContact = () => {
     this.updateContact.emit({
       id: this.id,
@@ -67,8 +69,10 @@ export class ContactForm {
       phone: this.phone,
       dob: this.dob
     });
+    this.resetForm();
   }
 
+  // Emits to newContact event handler in site.tsx
   handleNewContact = () => {
     this.newContact.emit({
       firstname: this.firstname,
@@ -84,7 +88,10 @@ export class ContactForm {
       phone: this.phone,
       dob: this.dob
     });
+    this.resetForm();
+  }
 
+  resetForm() {
     this.id = 0;
     this.firstname = '';
     this.surname = '';
@@ -98,7 +105,6 @@ export class ContactForm {
     this.postcode = '';
     this.phone = '';
     this.dob = '';
-
   }
 
   render() {

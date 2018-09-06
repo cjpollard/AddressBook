@@ -1,4 +1,5 @@
 const atob = require("atob");
+const escape = require("lodash.escape");
 const db = require("../utils/db");
 const validate = require("../utils/validate").validate;
 
@@ -36,18 +37,18 @@ module.exports = (req, res) => {
     }
 
     const insertValues = [
-        db.escape(body.firstname),
-        db.escape(body.sur),
-        db.escape(body.email),
-        db.escape(body.houseNameNo),
-        db.escape(body.street),
-        db.escape(body.town),
-        db.escape(body.county),
-        db.escape(body.country),
-        db.escape(body.postcode),
-        db.escape(body.phone),
-        db.escape(body.mobile),
-        db.escape(body.dob),
+        escape(body.firstname),
+        escape(body.sur),
+        escape(body.email),
+        escape(body.houseNameNo),
+        escape(body.street),
+        escape(body.town),
+        escape(body.county),
+        escape(body.country),
+        escape(body.postcode),
+        escape(body.phone),
+        escape(body.mobile),
+        body.dob,
         body.id
     ];
 

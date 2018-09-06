@@ -8,27 +8,21 @@ import { apiInterface } from '../../utils';
 })
 export class Site {
 
-    @State() contacts: Contact[] = [{
-        id: 1,
-        firstname: 'Arthur',
-        surname: 'Ashe',
-        email: 'arthur@ashe.com',
-        mobile: '07712345678',
-    }];
+    @State() contacts: Contact[] = [];
 
     @State() contact: Contact;
     @State() id: number;
 
+    // Setting up site events
     @Listen('deleteContact')
     deleteContact(e) {
         const id = e.detail.id;
         apiInterface.post('/api/delete', {id: id}).then(() => {
-            apiInterface.get('/api/get').then((data) => {
-                this.contacts = data.contacts;
-            });
+            this.fetchContacts();
         })
     }
 
+    // Fills in form with contact details for editing
     @Listen('editContact')
     editContact(e) {
         this.contact = e.detail;
@@ -42,14 +36,24 @@ export class Site {
         });
     }
 
+    // Updates edited contact
     @Listen('updateContact')
     updateContact(e) {
         const contact = e.detail;
         apiInterface.post('/api/edit', contact).then(() => {
-            return apiInterface.get('/api/get');
-        }).then((data) => {
+            this.fetchContacts();
+        });
+    }
+
+    componentDidLoad() {
+        this.fetchContacts();
+    }
+    
+    fetchContacts() {
+        apiInterface.get('/api/get').then((data) => {
             this.contacts = data.contacts;
         });
+
     }
 
     render() {
