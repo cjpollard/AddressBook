@@ -36,15 +36,15 @@ export class ContactForm {
       this.firstname = this.contact.firstname;
       this.surname = this.contact.surname;
       this.email = this.contact.email;
-      this.mobile = this.contact.mobile;
-      this.address1 = this.contact.address1;
-      this.address2 = this.contact.address2;
-      this.town = this.contact.town;
-      this.county = this.contact.county;
-      this.country = this.contact.country;
-      this.postcode = this.contact.postcode;
-      this.phone = this.contact.phone;
-      this.dob = this.contact.dob;
+      this.mobile = this.contact.mobile === null ? '' : this.contact.mobile;
+      this.address1 = this.contact.address1 === null ? '' : this.contact.address1;
+      this.address2 = this.contact.address2 === null ? '' : this.contact.address2;
+      this.town = this.contact.town === null ? '' : this.contact.town;
+      this.county = this.contact.county === null ? '' : this.contact.county;
+      this.country = this.contact.country === null ? '' : this.contact.country;
+      this.postcode = this.contact.postcode === null ? '' : this.contact.postcode;
+      this.phone = this.contact.phone === null ? '' : this.contact.phone;
+      this.dob = this.contact.dob === null ? '' : this.contact.dob;
     }
   }
 
