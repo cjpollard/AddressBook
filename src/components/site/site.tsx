@@ -9,6 +9,7 @@ import { apiInterface } from '../../utils';
 export class Site {
 
     @State() contacts: Contact[] = [{
+        id: 1,
         firstname: 'Arthur',
         surname: 'Ashe',
         email: 'arthur@ashe.com',
@@ -16,11 +17,12 @@ export class Site {
     }];
 
     @State() contact: Contact;
+    @State() id: number;
 
     @Listen('deleteContact')
     deleteContact(e) {
         const id = e.detail.id;
-        apiInterface.post('/api/delete', id).then(() => {
+        apiInterface.post('/api/delete', {id: id}).then(() => {
             apiInterface.get('/api/get').then((data) => {
                 this.contacts = data.contacts;
             });

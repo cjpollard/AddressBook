@@ -8,7 +8,7 @@ module.exports = (req, res) => {
         "properties": {
             "id": {"type": "number"},
             "firstname": {"type": "string", "minLength": 1},
-            "lastname": {"type": "string", "minLength": 1},
+            "surname": {"type": "string", "minLength": 1},
             "email": {"type": "string", "format": "email"},
             "houseNameNo": {"type": "string"},
             "street": {"type": "string"},
@@ -37,22 +37,21 @@ module.exports = (req, res) => {
 
     const insertValues = [
         db.escape(body.firstname),
-        db.escape(body.lastname),
+        db.escape(body.sur),
         db.escape(body.email),
         db.escape(body.houseNameNo),
         db.escape(body.street),
         db.escape(body.town),
         db.escape(body.county),
-        db.escape(body.town),
-        db.escape(body.county),
         db.escape(body.country),
+        db.escape(body.postcode),
         db.escape(body.phone),
         db.escape(body.mobile),
         db.escape(body.dob),
         body.id
     ];
 
-    db.query(`UPDATE contacts SET firstname=?, lastname=?, email=?, address1=?, address2=?, town=?, county=?, country=?, postcode=?, phone=?, mobile=?, dob=? WHERE id=?`, insertValues)
+    db.query(`UPDATE contacts SET firstname=?, surname=?, email=?, address1=?, address2=?, town=?, county=?, country=?, postcode=?, phone=?, mobile=?, dob=? WHERE id=?`, insertValues)
         .then((result) => {
             return res.status(200).json({success: result});
         }, (error) => {

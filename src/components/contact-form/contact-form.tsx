@@ -12,6 +12,7 @@ export class ContactForm {
   @Event() newContact: EventEmitter;
   @Event() updateContact: EventEmitter;
 
+  @State() id: number;
   @State() firstname: string;
   @State() surname: string;
   @State() email: string;
@@ -30,6 +31,7 @@ export class ContactForm {
   componentDidUpdate() {
     if(this.contact && this.contact.email !== this.email) {
       this.editing = true;
+      this.id = this.contact.id;
       this.firstname = this.contact.firstname;
       this.surname = this.contact.surname;
       this.email = this.contact.email;
@@ -46,13 +48,12 @@ export class ContactForm {
   }
 
   handleChange = (e) => {
-    console.log(e.target.name, e.target.value);
     this[e.target.name] = e.target.value;
-    console.log(this.firstname);
   }
 
   handleEditContact = () => {
     this.updateContact.emit({
+      id: this.id,
       firstname: this.firstname,
       surname: this.surname,
       email: this.email,
@@ -84,6 +85,7 @@ export class ContactForm {
       dob: this.dob
     });
 
+    this.id = 0;
     this.firstname = '';
     this.surname = '';
     this.email = '';

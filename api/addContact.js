@@ -7,7 +7,7 @@ module.exports = (req, res) => {
         "type": "object",
         "properties": {
             "firstname": {"type": "string", "minLength": 1},
-            "lastname": {"type": "string", "minLength": 1},
+            "surname": {"type": "string", "minLength": 1},
             "email": {"type": "string", "format": "email"},
             "houseNameNo": {"type": "string"},
             "street": {"type": "string"},
@@ -19,7 +19,7 @@ module.exports = (req, res) => {
             "mobile": {"type": "string", "maxLength": 15},
             "dob": {"type": "string", "format": "date"}
         },
-        "required": ["first_name", "last_name", "email_address"]
+        "required": ["firstname", "surname", "email"]
     };
 
     const data = typeof req.body.data === "string" ? req.body.data : "";
@@ -36,21 +36,20 @@ module.exports = (req, res) => {
 
     const insertValues = [
         db.escape(body.firstname),
-        db.escape(body.lastname),
+        db.escape(body.surname),
         db.escape(body.email),
         db.escape(body.houseNameNo),
         db.escape(body.street),
         db.escape(body.town),
         db.escape(body.county),
-        db.escape(body.town),
-        db.escape(body.county),
         db.escape(body.country),
+        db.escape(body.postcode),
         db.escape(body.phone),
         db.escape(body.mobile),
-        db.escape(body.dob)
+        body.dob
     ];
 
-    db.query(`INSERT INTO contacts (firstname, lastname, email, address1, address2, town, county, country, postcode, phone, mobile, dob)
+    db.query(`INSERT INTO contacts (firstname, surname, email, address1, address2, town, county, country, postcode, phone, mobile, dob)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`, insertValues)
         .then((result) => {
             return res.status(200).json({success: result});
