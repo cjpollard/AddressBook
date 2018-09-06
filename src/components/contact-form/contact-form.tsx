@@ -1,4 +1,5 @@
-import { Component, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Event, EventEmitter, State, Prop } from '@stencil/core';
+import { Contact } from '../../contact';
 
 @Component({
   tag: 'contact-form',
@@ -6,7 +7,11 @@ import { Component, Event, EventEmitter, State } from '@stencil/core';
 })
 export class ContactForm {
 
+  @Prop() contact: Contact;
+
   @Event() newContact: EventEmitter;
+  @Event() updateContact: EventEmitter;
+
   @State() firstname: string;
   @State() surname: string;
   @State() email: string;
@@ -19,12 +24,48 @@ export class ContactForm {
   @State() postcode: string;
   @State() phone: string;
   @State() dob: string;
+  @State() editing: boolean;
 
+
+  componentDidUpdate() {
+    if(this.contact && this.contact.email !== this.email) {
+      this.editing = true;
+      this.firstname = this.contact.firstname;
+      this.surname = this.contact.surname;
+      this.email = this.contact.email;
+      this.mobile = this.contact.mobile;
+      this.address1 = this.contact.address1;
+      this.address2 = this.contact.address2;
+      this.town = this.contact.town;
+      this.county = this.contact.county;
+      this.country = this.contact.country;
+      this.postcode = this.contact.postcode;
+      this.phone = this.contact.phone;
+      this.dob = this.contact.dob;
+    }
+  }
 
   handleChange = (e) => {
     console.log(e.target.name, e.target.value);
     this[e.target.name] = e.target.value;
     console.log(this.firstname);
+  }
+
+  handleEditContact = () => {
+    this.updateContact.emit({
+      firstname: this.firstname,
+      surname: this.surname,
+      email: this.email,
+      mobile: this.mobile,
+      address1: this.address1,
+      address2: this.address2,
+      town: this.town,
+      county: this.county,
+      country: this.country,
+      postcode: this.postcode,
+      phone: this.phone,
+      dob: this.dob
+    });
   }
 
   handleNewContact = () => {
@@ -55,13 +96,14 @@ export class ContactForm {
     this.postcode = '';
     this.phone = '';
     this.dob = '';
-    
+
   }
 
   render() {
     return (
       <div class="contact-form">
-        <p>Add new contact</p>
+        {!this.editing && <p>Add new contact</p>}
+        {this.editing && <p>Edit contact</p>}
         <br/>
         <input type="text" class="form-control" name="firstname" required placeholder="First name" value={this.firstname} onChange={(e) => this.handleChange(e)} />
         <input type="text" class="form-control" name="surname" required placeholder="Surname" value={this.surname} onChange={(e) => this.handleChange(e)} />
@@ -75,7 +117,8 @@ export class ContactForm {
         <input type="text" class="form-control" name="country" placeholder="Country" value={this.country} onChange={(e) => this.handleChange(e)} />
         <input type="text" class="form-control" name="postcode" placeholder="Postcode" value={this.postcode} onChange={(e) => this.handleChange(e)} />
         <input type="date" class="form-control" name="dob" placeholder="Date of birth" value={this.dob} onChange={(e) => this.handleChange(e)} />
-        <button onClick={this.handleNewContact}>Add</button>
+        {!this.editing && <button onClick={this.handleNewContact}>Add</button>}
+        {this.editing && <button onClick={this.handleEditContact}>Update</button>}
       </div>
     );
   }

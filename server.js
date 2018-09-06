@@ -1,29 +1,33 @@
 const express = require('express');
 const stencil = require('@stencil/core/server');
+const body_parser = require("body-parser");
+// const router = require('express').Router();
+const path = require('path');
 
 // create the express app
 const app = express();
 const server = require("http").createServer(app);
 
 
-// load the stencil config and
-// express serve-side rendering middleware
-const { wwwDir, logger } = stencil.initApp({
-  app: app,
-  configPath: __dirname
-});
+app.use(body_parser.json({limit: "5mb"}));
+app.use(body_parser.urlencoded({ extended: true }));
 
-app.use('/*', (req, res, next) => {
-  next();
-});
-// api routes
-app.use('/api', require('./api/controller'));
+app.post('/api/add', require('./api/addContact'));
+app.post('/api/delete', require('./api/deleteContact'));
+app.post('/api/edit', require('./api/editContact'));
+app.get('/api/get', require('./api/getContacts'));
 
-// serve static files
-app.use(express.static(wwwDir));
+// load the stencil config
+const config = stencil.loadConfig(__dirname);
+
+// serve-side render html pages
+app.use(stencil.ssrPathRegex, stencil.ssrMiddleware({ config }));
+
+// serve all static files from www directory
+app.use(express.static(path.join(__dirname, 'www')));
 
 // set which port express it will be listening on
 const port = 3030;
 
 // start listening and handling requests
-server.listen(port, () => logger.info(`server-side rendering listening on port: ${ port }`));
+server.listen(port, () => console.log(`server-side rendering listening on port: ${ port }`));

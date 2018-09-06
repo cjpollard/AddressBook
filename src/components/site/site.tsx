@@ -15,6 +15,8 @@ export class Site {
         mobile: '07712345678',
     }];
 
+    @State() contact: Contact;
+
     @Listen('deleteContact')
     deleteContact(e) {
         const id = e.detail.id;
@@ -25,11 +27,26 @@ export class Site {
         })
     }
 
+    @Listen('editContact')
+    editContact(e) {
+        this.contact = e.detail;
+    }
+
     @Listen('newContact')
     newContact(e) {
         const newContact = e.detail;
-        apiInterface.post('/api/add', e.detail).then(() => {
+        apiInterface.post('/api/add', newContact).then(() => {
             this.contacts = [...this.contacts, newContact];
+        });
+    }
+
+    @Listen('updateContact')
+    updateContact(e) {
+        const contact = e.detail;
+        apiInterface.post('/api/edit', contact).then(() => {
+            return apiInterface.get('/api/get');
+        }).then((data) => {
+            this.contacts = data.contacts;
         });
     }
 
@@ -44,7 +61,7 @@ export class Site {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-offset-4 col-md-4 col-sm 12">
-                            <contact-form></contact-form>
+                            <contact-form contact={this.contact}></contact-form>
                             <contact-list contacts={this.contacts}></contact-list>
 
                         </div>

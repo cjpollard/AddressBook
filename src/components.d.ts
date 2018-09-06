@@ -34,7 +34,7 @@ declare global {
 
   namespace StencilComponents {
     interface ContactForm {
-
+      'contact': Contact;
     }
   }
 
@@ -57,7 +57,9 @@ declare global {
   }
   namespace JSXElements {
     export interface ContactFormAttributes extends HTMLAttributes {
+      'contact'?: Contact;
       'onNewContact'?: (event: CustomEvent) => void;
+      'onUpdateContact'?: (event: CustomEvent) => void;
     }
   }
 }
@@ -92,6 +94,7 @@ declare global {
     export interface ContactListAttributes extends HTMLAttributes {
       'contacts'?: Contact[];
       'onDeleteContact'?: (event: CustomEvent) => void;
+      'onEditContact'?: (event: CustomEvent) => void;
       'onToggleContact'?: (event: CustomEvent) => void;
     }
   }

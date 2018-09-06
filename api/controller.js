@@ -1,8 +1,8 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-router.post("/add", require("./addContact"));
-router.post("/delete", require("./deleteContact"));
-router.post("/edit", require("./editContact"));
-router.get("/get", require("./getContacts"));
+router.post('/api/add', require('./addContact'));
+router.post('/api/delete', require('./deleteContact'));
+router.post('/api/edit', require('./editContact'));
+router.get('/api/get', require('./getContacts'));
 
 module.exports = router;
