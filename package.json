@@ -10,6 +10,7 @@
   "scripts": {
     "build": "stencil build --prerender",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+    "postinstall": "npm run build",
     "serve": "stencil-dev-server",
     "start": "node index.js",
     "test": "jest --no-cache",
