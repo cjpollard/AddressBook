@@ -27,7 +27,7 @@ app.use(stencil.ssrPathRegex, stencil.ssrMiddleware({ config }));
 app.use(express.static(path.join(__dirname, 'www')));
 
 // set which port express it will be listening on
-const port = 3030;
+const port = process.env.PORT || 3030;
 
 // start listening and handling requests
 server.listen(port, () => console.log(`server-side rendering listening on port: ${ port }`));
