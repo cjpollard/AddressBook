@@ -2,7 +2,7 @@
   "name": "@stencil/starter",
   "private": true,
   "version": "0.0.1",
-  "main": "server.js",
+  "main": "index.js",
   "description": "Stencil App Starter",
   "files": [
     "dist/"
@@ -10,9 +10,8 @@
   "scripts": {
     "build": "stencil build --prerender",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
-    "ssr": "node server.js",
     "serve": "stencil-dev-server",
-    "start": "npm run build && npm run ssr",
+    "start": "node index.js",
     "test": "jest --no-cache",
     "test.watch": "jest --watch --no-cache"
   },
