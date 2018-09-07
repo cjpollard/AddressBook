@@ -12,7 +12,7 @@ export class Site {
 
     @State() contact: Contact;
     @State() id: number;
-    @State() searchValue: string;
+    @State() searchValue: string = '';
 
     // Setting up site events
 
