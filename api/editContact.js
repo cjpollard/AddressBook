@@ -38,7 +38,7 @@ module.exports = (req, res) => {
 
     const insertValues = [
         escape(body.firstname),
-        escape(body.sur),
+        escape(body.surname),
         escape(body.email),
         escape(body.address1),
         escape(body.address2),
