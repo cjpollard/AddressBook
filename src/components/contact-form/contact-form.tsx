@@ -44,7 +44,7 @@ export class ContactForm {
       this.country = this.contact.country === null ? '' : this.contact.country;
       this.postcode = this.contact.postcode === null ? '' : this.contact.postcode;
       this.phone = this.contact.phone === null ? '' : this.contact.phone;
-      this.dob = this.contact.dob === null ? '' : this.contact.dob;
+      this.dob = this.contact.dob === null ? '' : this.contact.dob.slice(0, this.contact.dob.indexOf('T'));
     }
   }
 

@@ -8,7 +8,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build --prerender",
+    "build": "stencil build",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
     "postinstall": "npm run build",
     "serve": "stencil-dev-server",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@stencil/core": "^0.9.7",
     "@stencil/router": "latest",
-    "@stencil/sass": "0.0.5",
+    "@stencil/sass": "0.1.0",
     "ajv": "^6.5.3",
     "atob": "^2.1.2",
     "axios": "^0.18.0",

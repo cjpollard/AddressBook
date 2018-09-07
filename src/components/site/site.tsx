@@ -19,7 +19,9 @@ export class Site {
         const id = e.detail.id;
         apiInterface.post('/api/delete', {id: id}).then(() => {
             this.fetchContacts();
-        })
+        }, (err) => {
+            console.log(err);
+        });
     }
 
     // Fills in form with contact details for editing
@@ -32,7 +34,9 @@ export class Site {
     newContact(e) {
         const newContact = e.detail;
         apiInterface.post('/api/add', newContact).then(() => {
-            this.contacts = [...this.contacts, newContact];
+            this.fetchContacts();
+        }, (err) => {
+            console.log(err);
         });
     }
 
@@ -42,6 +46,8 @@ export class Site {
         const contact = e.detail;
         apiInterface.post('/api/edit', contact).then(() => {
             this.fetchContacts();
+        }, (err) => {
+            console.log(err);
         });
     }
 
@@ -52,6 +58,8 @@ export class Site {
     fetchContacts() {
         apiInterface.get('/api/get').then((data) => {
             this.contacts = data.contacts;
+        }, (err) => {
+            console.log(err);
         });
 
     }
