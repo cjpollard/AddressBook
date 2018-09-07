@@ -36,6 +36,7 @@ export class ContactForm {
       this.firstname = this.contact.firstname;
       this.surname = this.contact.surname;
       this.email = this.contact.email;
+      // Some values might be null, replace with empty strings
       this.mobile = this.contact.mobile === null ? '' : this.contact.mobile;
       this.address1 = this.contact.address1 === null ? '' : this.contact.address1;
       this.address2 = this.contact.address2 === null ? '' : this.contact.address2;

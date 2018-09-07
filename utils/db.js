@@ -1,14 +1,17 @@
 const mysql = require("mysql");
 const config = require("../dbConfig").database;
 
+// Probably not necessary for a test app
 config.connectionLimit = 10;
 config.multipleStatements = true;
+
 const pool = mysql.createPool(config);
 
 
 let query = (sql, values) => {
 
     return new Promise((resolve, reject) => {
+        // If passing an array of SQL queries, convert to a ; separated string
         if (typeof sql !== "string") {
             sql = sql.join(";") + ";";
         }
@@ -27,13 +30,6 @@ let query = (sql, values) => {
     });
 };
 
-
-let escape = (str) => {
-    return mysql.escape(str);
-};
-
 module.exports = {
-    pool: pool,
-    query: query,
-    escape: escape,
+    query: query
 };

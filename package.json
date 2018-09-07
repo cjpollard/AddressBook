@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "main": "index.js",
-  "description": "Stencil App Starter",
+  "description": "Address Book",
   "files": [
     "dist/"
   ],
@@ -41,14 +41,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-app-starter.git"
+    "url": "git+https://github.com/cjpollard/AddressBook.git"
   },
-  "author": "Ionic Team",
+  "author": "Colin Pollard",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ionic-team/stencil"
+    "url": "https://github.com/cjpollard/AddressBook"
   },
-  "homepage": "https://github.com/ionic-team/stencil",
+  "homepage": "https://github.com/cjpollard/AddressBook",
   "jest": {
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"

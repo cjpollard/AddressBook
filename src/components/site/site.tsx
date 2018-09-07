@@ -14,6 +14,8 @@ export class Site {
     @State() id: number;
 
     // Setting up site events
+
+    // Deletes contact
     @Listen('deleteContact')
     deleteContact(e) {
         const id = e.detail.id;
@@ -30,6 +32,7 @@ export class Site {
         this.contact = e.detail;
     }
 
+    // Adds new contact
     @Listen('newContact')
     newContact(e) {
         const newContact = e.detail;
@@ -54,7 +57,7 @@ export class Site {
     componentDidLoad() {
         this.fetchContacts();
     }
-    
+
     fetchContacts() {
         apiInterface.get('/api/get').then((data) => {
             this.contacts = data.contacts;
