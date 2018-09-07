@@ -12,6 +12,7 @@ export class Site {
 
     @State() contact: Contact;
     @State() id: number;
+    @State() searchValue: string;
 
     // Setting up site events
 
@@ -67,6 +68,18 @@ export class Site {
 
     }
 
+    findContacts() {
+        return this.contacts.filter((contact) => {
+            const firstnameMatch = contact.firstname.indexOf(this.searchValue) !== -1;
+            const surnameMatch = contact.surname.indexOf(this.searchValue) !== -1;
+            return firstnameMatch || surnameMatch;
+        });
+    }
+
+    handleSearchInput(e) {
+        this.searchValue = e.target.value;
+    }
+
     render() {
         return (
             <div class="wrapper">
@@ -79,8 +92,9 @@ export class Site {
                     <div class="row">
                         <div class="col-md-offset-4 col-md-4 col-sm 12">
                             <contact-form contact={this.contact}></contact-form>
-                            <contact-list contacts={this.contacts}></contact-list>
-
+                            <input id='search' name='search' placeholder='Search contacts' onChange={(e) => this.handleSearchInput(e)}/>
+                            {this.searchValue === '' && <contact-list contacts={this.contacts}></contact-list>}
+                            {this.searchValue !== '' && <contact-list contacts={this.findContacts()}></contact-list>}
                         </div>
                     </div>
                 </div>
