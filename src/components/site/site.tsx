@@ -60,7 +60,7 @@ export class Site {
 
     fetchContacts() {
         apiInterface.get('/api/get').then((data) => {
-            this.contacts = data.contacts;
+            this.contacts = [...data.contacts];
         }, (err) => {
             console.log(err);
         });
