@@ -70,8 +70,8 @@ export class Site {
 
     findContacts() {
         return this.contacts.filter((contact) => {
-            const firstnameMatch = contact.firstname.indexOf(this.searchValue) !== -1;
-            const surnameMatch = contact.surname.indexOf(this.searchValue) !== -1;
+            const firstnameMatch = contact.firstname.toLowerCase().indexOf(this.searchValue) > -1;
+            const surnameMatch = contact.surname.toLowerCase().indexOf(this.searchValue) > -1;
             return firstnameMatch || surnameMatch;
         });
     }
