@@ -68,6 +68,7 @@ export class Site {
 
     }
 
+    // Finding contacts, matching on surname and firstname, not case sensitive, slow
     findContacts() {
         return this.contacts.filter((contact) => {
             const firstnameMatch = contact.firstname.toLowerCase().indexOf(this.searchValue) > -1;
